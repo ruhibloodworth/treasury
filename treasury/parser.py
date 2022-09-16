@@ -13,7 +13,7 @@ class T(Transformer):
 parser = Lark(r"""
     %ignore WS_INLINE
 
-    start: entry
+    start: [entry NEWLINE]* entry NEWLINE?
 
     ?entry: open_entry
           | tr_entry
@@ -31,6 +31,7 @@ parser = Lark(r"""
     amount: SIGNED_NUMBER
 
     %import common.DIGIT
+    %import common.NEWLINE
     %import common.SIGNED_NUMBER
     %import common.WORD
     %import common.WS_INLINE
