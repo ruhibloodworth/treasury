@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "treasury"
+version = "0.1.0"
+description = "A plain text fund accounting tool"
+license = "GPL-3.0-or-later"
+authors = ["Ruhi Bloodworth <ruhi.bloodworth@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
