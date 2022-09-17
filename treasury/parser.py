@@ -1,6 +1,8 @@
+from datetime import datetime
 from decimal import Decimal
 from lark import Lark, Transformer
 
+from treasury.entry import OpenEntry, TrEntry
 
 class T(Transformer):
     pass
@@ -8,7 +10,24 @@ class T(Transformer):
     MONTH = int
     DAY = int
     SIGNED_NUMBER = Decimal
+    WORD = str
+    def amount(self, args):
+        return args[0]
 
+    def date(self, args):
+        return datetime(args[0], args[1], args[2])
+    
+    def account(self, args):
+        return args[0]
+
+    def open_entry(self, args):
+        return OpenEntry(args[0],args[1], args[2])
+
+    def tr_entry(self, args):
+        return TrEntry(args[0], args[1], args[2], args[3])
+
+    def start(self, args):
+        return args
 
 parser = Lark(r"""
     %ignore WS_INLINE
